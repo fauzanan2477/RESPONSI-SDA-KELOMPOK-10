@@ -11,8 +11,8 @@ Kelompok    : 10
                     mengimplementasikan fungsi penambahan katalog otomatis menggunakan HashMap,
                     dan menyusun algoritma pencarian lagu berbasis Depth First Search (DFS).
 
-2. Nama Anggota 2 : NAMA
-   NIM            : NIM
+2. Nama Anggota 2 : Naufal Hafizh Rahman
+   NIM            : L0125110
    Kontribusi     : Mengembangkan modul alur pemutar musik linear, mengimplementasikan konsep 
                     Queue (FIFO) dengan LinkedList untuk antrean lagu, serta membuat struktur 
                     Stack (LIFO) dengan ArrayDeque untuk fitur riwayat dan fungsi pembatalan (Undo/Back).
