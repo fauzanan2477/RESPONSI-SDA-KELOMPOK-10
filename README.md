@@ -1,10 +1,10 @@
 # Proyek Responsi Akhir SDA 2025A — MUSIQ Player
 
-### Kelompok: [Isi Nomor Kelompok Kalian]
-**Anggota Kelompok 10:**
-1. FAUZAN AKBAR NAVIS — [L0125041]
-2. [ANGELINA JOULY] — [L0125]
-3. [NAUFAL HAFIZ RAHMAN] — [L0125]
+### Kelompok: 10
+**Anggota Kelompok:**
+1. FAUZAN AKBAR NAVIS — L0125041
+2. ANGELINA JOULY — L0125073
+3. NAUFAL HAFIZH RAHMAN — L0125110
 
 ## 1. Deskripsi Singkat & Fitur Utama
 MUSIQ Player adalah aplikasi simulasi manajemen pustaka musik interaktif berbasis Command Line Interface (CLI) yang menerapkan prinsip penyimpanan data hierarkis dan alur data linear seperti platform Spotify.
