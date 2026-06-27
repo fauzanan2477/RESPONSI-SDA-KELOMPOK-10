@@ -1,4 +1,4 @@
-# Proyek Responsi Akhir SDA 2025B — MUSIQ Player
+# Proyek Responsi Akhir SDA 2025A — MUSIQ Player
 
 ### Kelompok: [Isi Nomor Kelompok Kalian]
 **Anggota Kelompok 10:**
