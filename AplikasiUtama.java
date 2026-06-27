@@ -9,8 +9,7 @@ public class AplikasiUtama {
         pemutar = new ManajemenPemutaran();
     }
 
-    // --- FITUR UI/UX PREMIUM ---
-
+    // --- FITUR UI/UX ---
     /**
      * Membersihkan layar terminal menggunakan kode ANSI Escape.
      */

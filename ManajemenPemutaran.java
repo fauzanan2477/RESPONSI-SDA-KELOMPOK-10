@@ -26,15 +26,24 @@ public class ManajemenPemutaran {
      * dan memasukkan ke riwayat (push) sangat cepat dan langsung ke posisi target.
      */
     public Lagu putarSelanjutnya() {
-        if (antreanLagu.isEmpty()) {
+        // Jika tidak ada lagu yang sedang diputar DAN antrean kosong, batalkan
+        if (laguYangSedangDiputar == null && antreanLagu.isEmpty()) {
             return null;
         }
 
+        // 1. Pindahkan lagu yang sedang menyala SAAT INI ke dalam riwayat (Stack LIFO)
         if (laguYangSedangDiputar != null) {
-            riwayatLagu.push(laguYangSedangDiputar); // Masukkan lagu lama ke stack riwayat (LIFO)
+            riwayatLagu.push(laguYangSedangDiputar); 
         }
 
-        laguYangSedangDiputar = antreanLagu.pollFirst(); // Ambil lagu baru dari depan antrean (FIFO)
+        // 2. Ambil lagu baru dari antrean (FIFO). 
+        if (!antreanLagu.isEmpty()) {
+            laguYangSedangDiputar = antreanLagu.pollFirst(); 
+        } else {
+            // Jika antrean kosong, hentikan pemutar musik (jadikan null)
+            laguYangSedangDiputar = null; 
+        }
+
         return laguYangSedangDiputar;
     }
 
