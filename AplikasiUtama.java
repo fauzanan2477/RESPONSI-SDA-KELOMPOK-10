@@ -143,12 +143,19 @@ public class AplikasiUtama {
                         app.tekanEnterUntukLanjut(scanner);
                         break;
                     case 4:
-                        if (app.pemutar.getAntreanLagu().isEmpty()) {
-                            System.out.println("\n[INFO] Antrean kosong. Silakan tambah lagu dulu.");
+                        if (app.pemutar.getLaguYangSedangDiputar() == null && app.pemutar.getAntreanLagu().isEmpty()) {
+                            System.out.println("\n[INFO] Tidak ada lagu yang sedang diputar maupun di antrean.");
                         } else {
                             app.animasiLoading("\nMemproses pergantian lagu");
                             Lagu laguBaru = app.pemutar.putarSelanjutnya();
-                            System.out.println(">> SEDANG MEMUTAR: " + laguBaru);
+
+                            if (laguBaru != null) {
+                                System.out.println(">> SEDANG MEMUTAR: " + laguBaru);
+                            } else {
+                                System.out.println("[INFO] Antrean habis! Pemutaran dihentikan.");
+                                System.out.println("       (Lagu yang tadi diputar telah dipindahkan ke Riwayat)");
+                            }
+                            
                         }
                         app.tekanEnterUntukLanjut(scanner);
                         break;
