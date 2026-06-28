@@ -4,7 +4,7 @@
 **Anggota Kelompok:**
 1. FAUZAN AKBAR NAVIS — L0125041
 2. ANGELINA JOULY — L0125073
-3. NAUFAL HAFIZH RAHMAN — L0125110
+3. NAUFAL HAFIZ RAHMAN — L0125110
 
 ## 1. Deskripsi Singkat & Fitur Utama
 MUSIQ Player adalah aplikasi simulasi manajemen pustaka musik interaktif berbasis Command Line Interface (CLI) yang menerapkan prinsip penyimpanan data hierarkis dan alur data linear seperti platform Spotify.
@@ -24,7 +24,7 @@ MUSIQ Player adalah aplikasi simulasi manajemen pustaka musik interaktif berbasi
 ## 3. Panduan Instalasi & Menjalankan Program
 Aplikasi ini dibangun menggunakan Java murni tanpa library eksternal tambahan.
 1. Pastikan perangkat Anda sudah terinstal Java Development Kit (JDK).
-2. Letakkan file `CatalogManager.java`, `PlaybackManager.java`, dan `MainApp.java` dalam satu folder yang sama.
+2. Letakkan file `ManajemenKatalog.java`, `ManajemenPemutaran.java`, dan `AplikasiUtama.java` dalam satu folder yang sama.
 3. Buka Terminal atau PowerShell pada direktori folder tersebut.
 4. Lakukan kompilasi program dengan mengetik:
    ```bash
