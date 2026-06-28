@@ -7,9 +7,10 @@ Kelompok    : 10
 
 1. Nama Anggota 1 : Fauzan Akbar Navis
    NIM            : L0125041
-   Kontribusi     : Merancang struktur data General Tree (N-Ary Tree) untuk pustaka musik,
-                    mengimplementasikan fungsi penambahan katalog otomatis menggunakan HashMap,
-                    dan menyusun algoritma pencarian lagu berbasis Depth First Search (DFS).
+   Kontribusi     : Merancang struktur data General Tree (N-Ary Tree) untuk pustaka musik, mengimplementasikan fungsi 
+                    penambahan katalog otomatis menggunakan HashMap, menyusun mekanisme penelusuran katalog musik 
+                    berbasis Depth First Search (DFS) untuk menampilkan hierarki bertingkat, serta mengoptimalkan 
+                    fitur pencarian lagu menggunakan HashMap Indexing bernilai O(1).
 
 2. Nama Anggota 2 : Naufal Hafizh Rahman
    NIM            : L0125110
@@ -20,5 +21,5 @@ Kelompok    : 10
    NIM            : L0125073
    Kontribusi     : Membangun sistem antarmuka pengguna interaktif (CLI Main Menu), menangani validasi 
                     dan pengecekan kesalahan input (edge cases/InputMismatchException), membuat data 
-                    awal simulasi (Data Seeder), serta mengintegrasikan ketiga file modul menjadi satu kesatuan.
+                    awal simulasi (Data Seeder) serta mengintegrasikan ketiga file modul menjadi satu kesatuan.
 ======================================================================================================================
