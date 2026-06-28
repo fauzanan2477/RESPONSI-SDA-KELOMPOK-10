@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class ManajemenPemutaran {
-    private Deque<Lagu> antreanLagu;    // Implementasi FIFO (Queue)
-    private Stack<Lagu> riwayatLagu;    // Implementasi LIFO (Stack)
+    private Deque<Lagu> antreanLagu;    // Menggunakan Deque untuk antrean FIFO (Queue)
+    private Stack<Lagu> riwayatLagu;    // Menggunakan Stack untuk riwayat LIFO (Stack)
     private Lagu laguYangSedangDiputar;
 
     public ManajemenPemutaran() {
@@ -12,35 +12,35 @@ public class ManajemenPemutaran {
     }
 
     /**
-     * (Fitur Queue) Menambahkan lagu ke antrean belakang.
-     * Analisis Kompleksitas Waktu: O(1) konstan, karena operasi addLast() 
-     * pada antrean memproses penambahan secara instan tanpa perlu menggeser data lain.
+     * Fitur Queue (Antrean) - Memasukkan data ke akhir antrean (Enqueue).
+     * Analisis Kompleksitas Waktu: O(1) Konstan. 
+     * Penjelasan: Karena struktur Deque (Double Ended Queue) memiliki pointer yang mengarah 
+     * ke elemen paling belakang, penambahan data (addLast) tidak memerlukan pergeseran array.
      */
     public void tambahKeAntrean(Lagu lagu) {
         antreanLagu.addLast(lagu);
     }
 
     /**
-     * (Fitur Queue) Memutar lagu dari antrean paling depan (Dequeue).
-     * Analisis Kompleksitas Waktu: O(1) karena operasi mengambil dari antrean (pollFirst)
-     * dan memasukkan ke riwayat (push) sangat cepat dan langsung ke posisi target.
+     * Fitur Queue (Antrean) - Mengambil data terdepan dan memindah lagu lama ke riwayat.
+     * Analisis Kompleksitas Waktu: O(1) Konstan.
+     * Penjelasan: Operasi push() ke Stack dan pollFirst() dari Queue sama-sama langsung 
+     * menargetkan ujung struktur data secara presisi tanpa perlu perulangan (looping).
      */
     public Lagu putarSelanjutnya() {
-        // Jika tidak ada lagu yang sedang diputar DAN antrean kosong, batalkan
         if (laguYangSedangDiputar == null && antreanLagu.isEmpty()) {
             return null;
         }
 
-        // 1. Pindahkan lagu yang sedang menyala SAAT INI ke dalam riwayat (Stack LIFO)
+        // Simpan (Push LIFO)
         if (laguYangSedangDiputar != null) {
             riwayatLagu.push(laguYangSedangDiputar); 
         }
 
-        // 2. Ambil lagu baru dari antrean (FIFO). 
+        // Ambil dari depan (Dequeue FIFO)
         if (!antreanLagu.isEmpty()) {
             laguYangSedangDiputar = antreanLagu.pollFirst(); 
         } else {
-            // Jika antrean kosong, hentikan pemutar musik (jadikan null)
             laguYangSedangDiputar = null; 
         }
 
@@ -48,9 +48,10 @@ public class ManajemenPemutaran {
     }
 
     /**
-     * (Fitur Stack) Memulihkan dan memutar lagu sebelumnya (Undo/Back).
-     * Analisis Kompleksitas Waktu: O(1) konstan. Mengambil data teratas dari Stack (pop)
-     * dieksekusi seketika dalam satu langkah.
+     * Fitur Stack (Riwayat) - Memulihkan data terakhir yang masuk (Undo / Pop).
+     * Analisis Kompleksitas Waktu: O(1) Konstan. 
+     * Penjelasan: Fitur Undo sangat cocok menggunakan prinsip Last In First Out (LIFO).
+     * Operasi mengambil elemen teratas dari Stack (pop) dieksekusi secara instan.
      */
     public Lagu kembaliKeSebelumnya() {
         if (riwayatLagu.isEmpty()) {
@@ -58,10 +59,10 @@ public class ManajemenPemutaran {
         }
 
         if (laguYangSedangDiputar != null) {
-            antreanLagu.addFirst(laguYangSedangDiputar); // Amankan lagu saat ini ke antrean terdepan
+            antreanLagu.addFirst(laguYangSedangDiputar); 
         }
 
-        laguYangSedangDiputar = riwayatLagu.pop(); // Ambil lagu terakhir dari tumpukan riwayat (LIFO)
+        laguYangSedangDiputar = riwayatLagu.pop(); 
         return laguYangSedangDiputar;
     }
 

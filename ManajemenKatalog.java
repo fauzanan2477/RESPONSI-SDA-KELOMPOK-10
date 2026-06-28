@@ -28,14 +28,14 @@ class Lagu {
  */
 class KategoriNode {
     private String namaKategori;
-    private String tingkatan; // Contoh: "ROOT", "GENRE", "ARTIS", "ALBUM"
+    private String tingkatan; 
     private Map<String, KategoriNode> subKategori; 
-    private List<Lagu> daftarLagu; // List ini hanya diisi jika tingkatan node adalah "ALBUM"
+    private List<Lagu> daftarLagu; 
 
     public KategoriNode(String namaKategori, String tingkatan) {
         this.namaKategori = namaKategori;
         this.tingkatan = tingkatan;
-        this.subKategori = new LinkedHashMap<>(); // Menjaga urutan sub-kategori saat dimasukkan
+        this.subKategori = new LinkedHashMap<>();
         this.daftarLagu = new ArrayList<>();
     }
 
@@ -55,43 +55,84 @@ class KategoriNode {
 
 public class ManajemenKatalog {
     private KategoriNode rootKatalog;
+    
+    // Menggunakan HashMap sebagai indeks bayangan agar pencarian lagu berkecepatan O(1)
+    private HashMap<String, Lagu> indeksLagu; 
 
     public ManajemenKatalog() {
         rootKatalog = new KategoriNode("Perpustakaan Musik", "ROOT");
+        indeksLagu = new HashMap<>();
         isiDataAwal();
     }
 
     /**
-     * Mengisi data dummy ke dalam katalog musik.
-     * Analisis Kompleksitas Waktu: O(1) karena datanya konstan dan langsung dimasukkan.
+     * Helper untuk merapikan teks (Contoh: "rock" -> "Rock").
+     * Analisis Kompleksitas Waktu: O(K) dimana K adalah panjang string.
      */
-    private void isiDataAwal() {
-        KategoriNode pop = new KategoriNode("Pop", "GENRE");
-        KategoriNode tulus = new KategoriNode("Tulus", "ARTIS");
-        KategoriNode albumManusia = new KategoriNode("Manusia", "ALBUM");
-        
-        albumManusia.tambahLagu(new Lagu("Hati-Hati di Jalan", 242));
-        albumManusia.tambahLagu(new Lagu("Diri", 220));
-        tulus.tambahSubKategori(albumManusia);
-        pop.tambahSubKategori(tulus);
-
-        KategoriNode rock = new KategoriNode("Rock", "GENRE");
-        KategoriNode dewa19 = new KategoriNode("Dewa 19", "ARTIS");
-        KategoriNode albumBintangLima = new KategoriNode("Bintang Lima", "ALBUM");
-        
-        albumBintangLima.tambahLagu(new Lagu("Roman Picisan", 247));
-        albumBintangLima.tambahLagu(new Lagu("Dua Sejoli", 274));
-        dewa19.tambahSubKategori(albumBintangLima);
-        rock.tambahSubKategori(dewa19);
-
-        rootKatalog.tambahSubKategori(pop);
-        rootKatalog.tambahSubKategori(rock);
+    private String formatTeks(String teks) {
+        if (teks == null || teks.trim().isEmpty()) return "";
+        String[] kata = teks.trim().split("\\s+");
+        StringBuilder hasil = new StringBuilder();
+        for (String k : kata) {
+            if (k.length() > 0) {
+                hasil.append(Character.toUpperCase(k.charAt(0)))
+                     .append(k.substring(1).toLowerCase()).append(" ");
+            }
+        }
+        return hasil.toString().trim();
     }
 
     /**
-     * Menampilkan isi Tree menggunakan Pre-order Traversal.
-     * Analisis Kompleksitas Waktu: O(N), di mana N adalah total node (kategori & lagu). 
-     * Karena program harus mengunjungi semua node satu per satu.
+     * Memasukkan lagu baru ke dalam Tree secara dinamis DAN menyimpannya ke HashMap.
+     * Analisis Kompleksitas Waktu: O(1) rata-rata. 
+     * Penjelasan: Mengakses Map (get/put) pada setiap tingkatan kategori (Genre, Artis, Album) 
+     * berjalan secara instan O(1) berkat fungsi hashing internal Java.
+     */
+    public void tambahLaguKeKatalog(String namaGenre, String namaArtis, String namaAlbum, Lagu laguBaru) {
+        namaGenre = formatTeks(namaGenre);
+        namaArtis = formatTeks(namaArtis);
+        namaAlbum = formatTeks(namaAlbum);
+
+        KategoriNode genreNode = rootKatalog.getSubKategori().get(namaGenre);
+        if (genreNode == null) {
+            genreNode = new KategoriNode(namaGenre, "GENRE");
+            rootKatalog.tambahSubKategori(genreNode);
+        }
+
+        KategoriNode artisNode = genreNode.getSubKategori().get(namaArtis);
+        if (artisNode == null) {
+            artisNode = new KategoriNode(namaArtis, "ARTIS");
+            genreNode.tambahSubKategori(artisNode);
+        }
+
+        KategoriNode albumNode = artisNode.getSubKategori().get(namaAlbum);
+        if (albumNode == null) {
+            albumNode = new KategoriNode(namaAlbum, "ALBUM");
+            artisNode.tambahSubKategori(albumNode);
+        }
+
+        albumNode.tambahLagu(laguBaru);
+        indeksLagu.put(laguBaru.getJudul().toLowerCase(), laguBaru); 
+    }
+
+    private void isiDataAwal() {
+        tambahLaguKeKatalog("Pop", "Tulus", "Manusia", new Lagu("Hati-Hati di Jalan", 242));
+        tambahLaguKeKatalog("Pop", "Tulus", "Manusia", new Lagu("Diri", 220));
+        tambahLaguKeKatalog("Pop", "Billie Eilish", "Happier Than Ever", new Lagu("Happier Than Ever", 298));
+        tambahLaguKeKatalog("Pop", "Billie Eilish", "Happier Than Ever", new Lagu("Halley's Comet", 234));
+        
+        tambahLaguKeKatalog("Rock", "Dewa 19", "Bintang Lima", new Lagu("Roman Picisan", 247));
+        tambahLaguKeKatalog("Rock", "Dewa 19", "Bintang Lima", new Lagu("Dua Sejoli", 274));
+        tambahLaguKeKatalog("Rock", "Queen", "A Night at the Opera", new Lagu("Bohemian Rhapsody", 354));
+        
+        tambahLaguKeKatalog("Indie", "Arctic Monkeys", "AM", new Lagu("Do I Wanna Know?", 272));
+        tambahLaguKeKatalog("Indie", "Arctic Monkeys", "AM", new Lagu("R U Mine?", 200));
+    }
+
+    /**
+     * Menampilkan isi Tree menggunakan metode Pre-order Traversal.
+     * Analisis Kompleksitas Waktu: O(N) di mana N adalah total seluruh node dan daun (lagu).
+     * Penjelasan: Program harus menelusuri setiap cabang (DFS) satu per satu tanpa ada yang terlewat.
      */
     public void tampilkanKatalog(KategoriNode node, String spasi) {
         if (!node.getTingkatan().equals("ROOT")) {
@@ -110,23 +151,21 @@ public class ManajemenKatalog {
     }
 
     /**
-     * Mencari lagu berdasarkan judul menggunakan Depth First Search (DFS).
-     * Analisis Kompleksitas Waktu: O(N) (Skenario Terburuk). Karena jika lagu ada di akhir,
-     * program harus mengecek seluruh isi Tree terlebih dahulu.
+     * Mengambil daftar semua lagu.
+     * Analisis Kompleksitas Waktu: O(N).
      */
-    public Lagu cariLaguBerdasarkanJudul(KategoriNode node, String targetJudul) {
-        if (node.getTingkatan().equals("ALBUM")) {
-            for (Lagu lagu : node.getDaftarLagu()) {
-                if (lagu.getJudul().equalsIgnoreCase(targetJudul)) {
-                    return lagu; // Lagu ketemu
-                }
-            }
-        }
-        for (KategoriNode sub : node.getSubKategori().values()) {
-            Lagu laguDitemukan = cariLaguBerdasarkanJudul(sub, targetJudul);
-            if (laguDitemukan != null) return laguDitemukan;
-        }
-        return null; // Lagu tidak ketemu
+    public void dapatkanSemuaLagu(List<Lagu> wadahLagu) {
+        wadahLagu.addAll(indeksLagu.values());
+    }
+
+    /**
+     * Mencari lagu menggunakan HashMap Indexing.
+     * Analisis Kompleksitas Waktu: O(1) Konstan.
+     * Penjelasan: Alih-alih melakukan pencarian O(N) menyusuri Tree, kami menggunakan HashMap 
+     * untuk mendapatkan objek lagu secara instan berdasarkan key (judul).
+     */
+    public Lagu cariLaguBerdasarkanJudul(String targetJudul) {
+        return indeksLagu.get(targetJudul.toLowerCase());
     }
 
     public KategoriNode getRootKatalog() { return rootKatalog; }
