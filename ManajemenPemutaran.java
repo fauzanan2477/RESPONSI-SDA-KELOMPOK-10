@@ -69,4 +69,6 @@ public class ManajemenPemutaran {
     public Deque<Lagu> getAntreanLagu() { return antreanLagu; }
     public Stack<Lagu> getRiwayatLagu() { return riwayatLagu; }
     public Lagu getLaguYangSedangDiputar() { return laguYangSedangDiputar; }
+    public boolean apakahantreankosong() { return antreanLagu.isEmpty; }
+    public void kosongkanantrean() { antreanLagu.clear; }
 }
