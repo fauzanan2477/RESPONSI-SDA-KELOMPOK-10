@@ -88,9 +88,9 @@ public class AplikasiUtama {
             System.out.println("[Kosong]");
             return;
         }
-        Stack<Lagu> riwayat = pemutar.getRiwayatLagu();
-        for (int i = riwayat.size() - 1; i >= 0; i--) {
-            System.out.println("- " + riwayat.get(i).getJudul());
+        
+        for (Lagu lagu : pemutar.getRiwayatLagu()) {
+            System.out.println("- " + lagu.getJudul());
         }
     }
 

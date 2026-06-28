@@ -2,12 +2,12 @@ import java.util.*;
 
 public class ManajemenPemutaran {
     private Deque<Lagu> antreanLagu;    // Menggunakan Deque untuk antrean FIFO (Queue)
-    private Stack<Lagu> riwayatLagu;    // Menggunakan Stack untuk riwayat LIFO (Stack)
+    private Deque<Lagu> riwayatLagu;    // Menggunakan Stack untuk riwayat LIFO (Stack)
     private Lagu laguYangSedangDiputar;
 
     public ManajemenPemutaran() {
-        antreanLagu = new ArrayDeque<>();
-        riwayatLagu = new Stack<>();
+        antreanLagu = new LinkedList<>();
+        riwayatLagu = new ArrayDeque<>();
         laguYangSedangDiputar = null;
     }
 
@@ -67,8 +67,6 @@ public class ManajemenPemutaran {
     }
 
     public Deque<Lagu> getAntreanLagu() { return antreanLagu; }
-    public Stack<Lagu> getRiwayatLagu() { return riwayatLagu; }
+    public Deque<Lagu> getRiwayatLagu() { return riwayatLagu; }
     public Lagu getLaguYangSedangDiputar() { return laguYangSedangDiputar; }
-    public boolean apakahantreankosong() { return antreanLagu.isEmpty; }
-    public void kosongkanantrean() { antreanLagu.clear; }
 }
