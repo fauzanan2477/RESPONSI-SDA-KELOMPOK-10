@@ -17,7 +17,7 @@ Kelompok    : 10
    NIM            : L0125073
    Kontribusi     : Membangun sistem antarmuka pengguna interaktif (CLI Main Menu), menangani validasi 
                     dan pengecekan kesalahan input (edge cases/InputMismatchException), membuat data 
-                    awal simulasi (Data Seeder) serta mengintegrasikan ketiga file modul menjadi satu kesatuan.
+                    awal simulasi (Data Seeder), serta mengintegrasikan ketiga file modul menjadi satu kesatuan.
 
 3. Nama Anggota 3 : Naufal Hafizh Rahman
    NIM            : L0125110
