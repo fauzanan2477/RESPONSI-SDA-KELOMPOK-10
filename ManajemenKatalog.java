@@ -44,10 +44,20 @@ class KategoriNode {
     public Map<String, KategoriNode> getSubKategori() { return subKategori; }
     public List<Lagu> getDaftarLagu() { return daftarLagu; }
 
+    /**
+     * Menambahkan sub-kategori baru ke dalam node saat ini (menggunakan Map).
+     * Penjelasan: Operasi put() pada struktur data LinkedHashMap memetakan kunci (key) 
+     * ke dalam indeks memori secara instan berkat fungsi hashing.(O(1))
+     */
     public void tambahSubKategori(KategoriNode sub) {
         this.subKategori.put(sub.getNamaKategori(), sub);
     }
 
+    /**
+     * Menambahkan lagu baru ke dalam node kategori Album (menggunakan List).
+     * Penjelasan: Operasi add() pada struktur data ArrayList secara default menambahkan 
+     * elemen baru tepat di bagian paling akhir dari array tanpa perlu menggeser data lain.(O(1))
+     */
     public void tambahLagu(Lagu laguBaru) {
         this.daftarLagu.add(laguBaru);
     }
