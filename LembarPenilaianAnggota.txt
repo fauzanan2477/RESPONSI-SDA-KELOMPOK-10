@@ -9,15 +9,14 @@ Kelompok    : 10
    NIM            : L0125041
    Kontribusi     : Merancang struktur data General Tree (N-Ary Tree) untuk pustaka musik, mengimplementasikan fungsi 
                     penambahan katalog otomatis menggunakan HashMap, menyusun mekanisme penelusuran katalog musik 
-                    berbasis Depth First Search (DFS) untuk menampilkan hierarki bertingkat, mengoptimalkan 
-                    fitur pencarian lagu menggunakan HashMap Indexing bernilai O(1), serta membantu dalam menyusun 
-                    logika kode di aplikasi utama agar tetap selaras dengan modul lainnya.
+                    berbasis Depth First Search (DFS) untuk menampilkan hierarki bertingkat, serta mengoptimalkan 
+                    fitur pencarian lagu menggunakan HashMap Indexing bernilai O(1).
 
 2. Nama Anggota 2 : Angelina Jouly
    NIM            : L0125073
    Kontribusi     : Membangun sistem antarmuka pengguna interaktif (CLI Main Menu), menangani validasi 
                     dan pengecekan kesalahan input (edge cases/InputMismatchException), membuat data 
-                    awal simulasi (Data Seeder), serta mengintegrasikan ketiga file modul menjadi satu kesatuan.
+                    awal simulasi (Data Seeder) serta mengintegrasikan ketiga file modul menjadi satu kesatuan.
 
 3. Nama Anggota 3 : Naufal Hafizh Rahman
    NIM            : L0125110

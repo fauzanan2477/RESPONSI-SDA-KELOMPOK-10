@@ -2,7 +2,7 @@ import java.util.*;
 
 public class ManajemenPemutaran {
     private Deque<Lagu> antreanLagu;    // Menggunakan Deque untuk antrean FIFO (Queue)
-    private Deque<Lagu> riwayatLagu;    // Menggunakan Stack untuk riwayat LIFO (Stack)
+    private Deque<Lagu> riwayatLagu;    // Menggunakan Deque dengan membatasi penambahan di atas untuk riwayat LIFO (Stack)
     private Lagu laguYangSedangDiputar;
 
     public ManajemenPemutaran() {
