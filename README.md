@@ -29,3 +29,8 @@ Aplikasi ini dibangun menggunakan Java murni tanpa library eksternal tambahan.
 4. Lakukan kompilasi program dengan mengetik:
    ```bash
    javac *.java
+   java *
+5. Contoh kompilasi
+   ```bash
+   javac AplikasiUtama.java
+   java AplikasiUtama
